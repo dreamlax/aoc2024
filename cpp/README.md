@@ -1,5 +1,9 @@
-To build:
+Pre-build steps:
+```
+autoreconf -fi
+```
 
+To build:
 ```
 mkdir build
 cd build
@@ -12,4 +16,3 @@ To run:
 cd build
 ./dayX-partX path/to/input
 ```
-
