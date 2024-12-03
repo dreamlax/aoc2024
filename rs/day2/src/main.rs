@@ -159,7 +159,6 @@ mod tests {
         assert!(safe, "Should be safe");
     }
 
-    #[cfg(feature = "part2")]
     #[test]
     fn test_safe_outlier_2() {
         let safe = is_safe_part_2(&[1, 50, 2, 3, 4]);
