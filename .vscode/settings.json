@@ -56,5 +56,5 @@
         "typeinfo": "cpp",
         "unordered_set": "cpp"
     },
-    "C_Cpp.default.cppStandard": "c++17"
+    "C_Cpp.default.cppStandard": "c++20"
 }

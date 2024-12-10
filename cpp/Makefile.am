@@ -1,3 +1,5 @@
+AM_CXXFLAGS=-std=c++20
+
 lib_LIBRARIES = libutils.a
 libutils_a_SOURCES = \
     utils/timer.cpp
@@ -14,7 +16,9 @@ bin_PROGRAMS = \
     day5-part1 \
     day5-part2 \
     day6-part1 \
-    day6-part2
+    day6-part2 \
+    day7-part1 \
+    day7-part2
 
 day1_part1_LDADD = libutils.a
 day1_part1_SOURCES = \
@@ -74,3 +78,13 @@ day6_part2_LDADD = libutils.a
 day6_part2_SOURCES = \
     day6/main.cpp
 day6_part2_CPPFLAGS = -DAOC_PART2
+
+
+day7_part1_LDADD = libutils.a
+day7_part1_SOURCES = \
+    day7/main.cpp
+
+day7_part2_LDADD = libutils.a
+day7_part2_SOURCES = \
+    day7/main.cpp
+day7_part2_CPPFLAGS = -DAOC_PART2
