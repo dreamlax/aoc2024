@@ -12,6 +12,12 @@ impl Timer {
     }
 }
 
+impl Default for Timer {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Drop for Timer {
     fn drop(&mut self) {
         eprintln!("Elapsed: {}µs", self.start.elapsed().as_micros());

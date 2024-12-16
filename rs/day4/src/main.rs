@@ -104,10 +104,7 @@ fn count_x_mas(board: &[u8]) -> usize {
                     board[pos+1-board_width]
                 ];
     
-                match &cross {
-                    b"SMSM" | b"MSMS" | b"SMMS" | b"MSSM" => true,
-                    _ => false
-                }
+                matches!(&cross, b"SMSM" | b"MSMS" | b"SMMS" | b"MSSM")
             }
         })
         .count()
@@ -117,8 +114,7 @@ fn main() {
     let _timer = Timer::new();
 
     let path: PathBuf = std::env::args_os()
-        .skip(1)
-        .next()
+        .nth(1)
         .expect("Should have file argument")
         .into();
 

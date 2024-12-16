@@ -8,8 +8,7 @@ fn main() {
     let _timer = Timer::new();
 
     let path: PathBuf = std::env::args_os()
-        .skip(1)
-        .next()
+        .nth(1)
         .expect("Should have file argument")
         .into();
 

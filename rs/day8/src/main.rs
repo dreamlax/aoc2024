@@ -9,7 +9,7 @@ fn get_antennae(board: &[u8]) -> HashMap<u8, Vec<usize>> {
         .enumerate()
         .filter(|(_idx, ch)| ch.is_ascii_alphanumeric())
         .fold(HashMap::new(), |mut acc, (idx, ch)| {
-            acc.entry(*ch).or_insert(Vec::new()).push(idx);
+            acc.entry(*ch).or_default().push(idx);
             acc
         })
 }
@@ -114,8 +114,7 @@ fn main() {
     let _timer = Timer::new();
 
     let path: PathBuf = std::env::args_os()
-        .skip(1)
-        .next()
+        .nth(1)
         .expect("Should have file argument")
         .into();
 

@@ -44,15 +44,14 @@ fn scan_line_limited(mut line: &str) -> i64 {
         line = &line[dont_idx+do_idx..];
     }
 
-    sum + scan_line(&line)
+    sum + scan_line(line)
 }
 
 fn main() {
     let _t = Timer::new();
 
     let path: PathBuf = std::env::args_os()
-        .skip(1)
-        .next()
+        .nth(1)
         .expect("Should have file argument")
         .into();
 

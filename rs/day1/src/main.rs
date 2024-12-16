@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::fs::read_to_string;
 use std::path::PathBuf;
 use utils::timer::Timer;
@@ -58,8 +57,7 @@ fn main() {
     let _t = Timer::new();
 
     let path: PathBuf = std::env::args_os()
-        .skip(1)
-        .next()
+        .nth(1)
         .expect("Should have file argument")
         .into();
 

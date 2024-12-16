@@ -9,20 +9,20 @@ fn is_safe_part_1(report: &[i32]) -> bool {
 
     diffs
         .clone()
-        .all(|d| d > 0 && d <= 3)
+        .all(|d| (1..=3).contains(&d))
     ||
     diffs
-        .all(|d| d < 0 && d >= -3)
+        .all(|d| (-3..0).contains(&d))
 }
 
 fn is_up(x: i32, y: i32) -> bool {
     let diff = x - y;
-    diff < 0 && diff >= -3
+    (-3..0).contains(&diff)
 }
 
 fn is_down(x: i32, y: i32) -> bool {
     let diff = x - y;
-    diff > 0 && diff <= 3
+    (1..=3).contains(&diff)
 }
 
 fn scan_report<T>(report: &[i32], checker: T) -> bool
@@ -95,7 +95,7 @@ fn is_safe_part_2(report: &[i32]) -> bool {
     }
 
     for checker in [is_up, is_down] {
-        if scan_report(&report, checker) {
+        if scan_report(report, checker) {
             return true;
         }
     }
@@ -108,8 +108,7 @@ fn main() {
     let _t = Timer::new();
     
     let path: PathBuf = std::env::args_os()
-        .skip(1)
-        .next()
+        .nth(1)
         .expect("Should have file argument")
         .into();
 

@@ -113,7 +113,7 @@ fn defrag(disk: &mut [u16], file_lengths: &[usize], mut free_spaces: BTreeMap<us
         let space_left = space_length - file_length;
         free_spaces.entry(space_length).and_modify(|indices| { indices.remove(&space_index); });
         if space_left > 0 {
-            free_spaces.entry(space_left).or_insert(BTreeSet::new()).insert(space_index + file_length);
+            free_spaces.entry(space_left).or_default().insert(space_index + file_length);
         }
     }
 }
@@ -131,8 +131,7 @@ fn main() {
     let _timer = Timer::new();
 
     let path: PathBuf = std::env::args_os()
-        .skip(1)
-        .next()
+        .nth(1)
         .expect("Should have file argument")
         .into();
 
