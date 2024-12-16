@@ -55,7 +55,8 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "unordered_set": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "map": "cpp"
     },
     "C_Cpp.default.cppStandard": "c++20"
 }

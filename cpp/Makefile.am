@@ -22,7 +22,9 @@ bin_PROGRAMS = \
     day8-part1 \
     day8-part2 \
     day9-part1 \
-    day9-part2
+    day9-part2 \
+    day10-part1 \
+    day10-part2
 
 day1_part1_LDADD = libutils.a
 day1_part1_SOURCES = \
@@ -112,3 +114,13 @@ day9_part2_LDADD = libutils.a
 day9_part2_SOURCES = \
     day9/main.cpp
 day9_part2_CPPFLAGS = -DAOC_PART2
+
+
+day10_part1_LDADD = libutils.a
+day10_part1_SOURCES = \
+    day10/main.cpp
+
+day10_part2_LDADD = libutils.a
+day10_part2_SOURCES = \
+    day10/main.cpp
+day10_part2_CPPFLAGS = -DAOC_PART2
