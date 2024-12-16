@@ -1,3 +1,5 @@
+#[cfg(feature="part2")]
+use std::collections::HashMap;
 use std::fs::read_to_string;
 use std::path::PathBuf;
 use utils::timer::Timer;
