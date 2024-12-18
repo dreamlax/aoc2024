@@ -44,7 +44,7 @@ impl<'a> From<&'a [u8]> for Farm<'a> {
     }
 }
 
-impl<'a> Farm<'a> {
+impl Farm<'_> {
     fn find_plot(&self, current_pos: usize, id: u16, analysis: &mut [Cell]) {
         let plot_name = self.map[current_pos];
         analysis[current_pos].id = id;
