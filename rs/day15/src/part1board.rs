@@ -76,52 +76,36 @@ impl Board<'_> for Part1Board {
     }
 }
 
+impl Part1Board {
+    fn relative_move(&mut self, offset: isize) {
+        let mut next = (self.robot as isize + offset) as usize;
+
+        while self.cells[next] != Cell::Wall {
+            if self.cells[next] == Cell::Empty {
+                self.robot = (self.robot as isize + offset) as usize;
+                self.cells.swap(next, self.robot);
+                return;
+            }
+
+            next = (next as isize + offset) as usize;
+        }
+    }
+}
+
 impl InstructionProcessor for Part1Board {
     fn move_left(&mut self) {
-        let mut x = self.robot - 1;
-        while self.cells[x] != Cell::Wall {
-            if self.cells[x] == Cell::Empty {
-                self.cells.swap(x, self.robot - 1);
-				self.robot -= 1;
-				return;
-            }
-			x -= 1;
-        }
+        self.relative_move(-1);
     }
 
 	fn move_right(&mut self) {
-        let mut x = self.robot + 1;
-        while self.cells[x] != Cell::Wall {
-            if self.cells[x] == Cell::Empty {
-                self.cells.swap(x, self.robot + 1);
-				self.robot += 1;
-				return;
-            }
-			x += 1;
-        }
+        self.relative_move(1);
 	}
 
 	fn move_up(&mut self) {
-		let mut y = self.robot - self.width;
-		while self.cells[y] != Cell::Wall {
-			if self.cells[y] == Cell::Empty {
-				self.cells.swap(y, self.robot - self.width);
-				self.robot -= self.width;
-				return;
-			}
-			y -= self.width;
-		}
+		self.relative_move(-(self.width as isize));
 	}
 
 	fn move_down(&mut self) {
-		let mut y = self.robot + self.width;
-		while self.cells[y] != Cell::Wall {
-			if self.cells[y] == Cell::Empty {
-				self.cells.swap(y, self.robot + self.width);
-				self.robot += self.width;
-				return;
-			}
-			y += self.width;
-		}
+		self.relative_move(self.width as isize);
 	}
 }
