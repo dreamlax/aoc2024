@@ -3,8 +3,28 @@ use std::fs::read;
 use std::path::PathBuf;
 
 mod board;
+mod part1board;
+mod part2board;
 
-use board::{Board,Cell};
+use board::Board;
+use part1board::Part1Board;
+use part2board::Part2Board;
+
+fn get_answer<'a, T: Board<'a>>(input: &'a [u8]) -> usize {
+    let split_point = input
+        .windows(2)
+        .position(|ch| ch[0] == b'\n' && ch[1] == b'\n')
+        .expect("Should have double line break in input");
+
+    let mut board: T = input[..split_point].into();
+    let instructions_data = &input[split_point+1..];
+
+    for i in instructions_data {
+        board.process_instruction(*i);
+    }
+
+    board.sum_gps()
+}
 
 fn main() {
     let _timer = Timer::new();
@@ -17,23 +37,12 @@ fn main() {
     let input = read(path)
         .expect("Should be able to read from input");
 
-    let split_point = input
-        .windows(2)
-        .position(|ch| ch[0] == b'\n' && ch[1] == b'\n')
-        .expect("Should have double line break in input");
-
-    let mut board: Board = input[..split_point].into();
-    let instructions_data = &input[split_point+1..];
-
-    for i in instructions_data {
-        board.process_instruction(*i);
+    let answer = if cfg!(feature = "part2") {
+        get_answer::<Part2Board>(&input)
     }
-
-    let answer: usize = board.cells.iter()
-        .enumerate()
-        .filter(|(_idx, cell)| **cell == Cell::Box)
-        .map(|(idx, _cell)| idx / board.width * 100 + idx % board.width)
-        .sum();
+    else {
+        get_answer::<Part1Board>(&input)
+    };
     
     println!("Answer: {answer}");
 }
