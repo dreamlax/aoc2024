@@ -1,0 +1,11 @@
+[package]
+name = "day18"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+part2 = []
+
+[dependencies]
+utils = { path = "../utils" }
